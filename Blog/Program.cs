@@ -1,4 +1,5 @@
 ﻿using Blog.Models;
+using Blog.Repositories;
 using Dapper.Contrib.Extensions;
 using System;
 using System.Data.SqlClient;
@@ -10,31 +11,37 @@ namespace Blog
         private const string CONNECTION_STRING = @"Server=localhost,1433;Database=Blog;User ID = sa; Password=1q2w3e4r@#$";
         static void Main(string[] args)
         {
-            //CreateUser();
+            var connection = new SqlConnection(CONNECTION_STRING);
 
-            //UpdateUser();
-            DeleteUser();
-            ReadUsers();
-            ReadUser();
+            connection.Open();
+       
+            var userRepository = new UserRepository(connection);
+            userRepository.Delete(14);
+            userRepository.Create(PrepararObjetoInsercao());
+
+         
+            connection.Close();
+
+
+
+            
         }
-        public static void ReadUsers()
+        public static void ReadUsers(SqlConnection connection)
         {
-            using (var connection = new SqlConnection(CONNECTION_STRING))
-            {
-                var users = connection.GetAll<User>();
-                foreach (var user in users)
-                {
-                    Console.WriteLine(user.Name);
-                }
-            }
+            var repository = new UserRepository(connection);
+            var users = repository.Read();
+            
+            foreach (var user in users)
+                Console.WriteLine(user.Name);                        
         }
-        public static void CreateUser()
+        public static User PrepararObjetoInsercao()
         {
             var user = new User()
             {
-                Name = "Garen Stemmaguarda",
-                Email = "garennn@garennn.com",
-                PasswordHash = "O PODER DE DEMACIA",
+                Id = 3,
+                Name = "bERIT Stemmaguarda",
+                Email = "garen@garenn.com",
+                PasswordHash = "O PODER DE DEMACIAn",
                 Bio = @"
                         Nascido na nobre família Stemmaguarda, junto com sua irmã mais nova, Lux, Garen
                         sabia desde jovem que esperavam que ele defendesse o trono de Demacia com sua vida.
@@ -46,11 +53,7 @@ namespace Blog
                 Slug = "garennn-stemmaguardann"
             };
 
-            using (var connection = new SqlConnection(CONNECTION_STRING))
-            {
-                connection.Insert<User>(user);
-                Console.WriteLine("Cadastro Realizado com sucesso!");
-            }
+            return user;
         }
         public static void UpdateUser()
         {
@@ -86,6 +89,14 @@ namespace Blog
                 connection.Delete<User>(user);
                 Console.WriteLine("Exclusão realizada com sucesso!");
             }
+        }
+        public static void ReadRoles(SqlConnection connection)
+        {
+            var repository = new RoleRepository(connection);
+            var roles = repository.Read();
+
+            foreach(var role in roles)
+                Console.WriteLine(role.Name);            
         }
     }
 }
