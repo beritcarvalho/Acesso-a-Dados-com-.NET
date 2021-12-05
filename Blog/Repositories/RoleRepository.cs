@@ -5,7 +5,7 @@ using System.Data.SqlClient;
 
 namespace Blog.Repositories
 {
-    class RoleRepository
+    class RoleRepository 
     {
         private SqlConnection _connection;
         public RoleRepository(SqlConnection connection)

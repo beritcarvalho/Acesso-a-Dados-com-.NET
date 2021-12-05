@@ -406,12 +406,12 @@ namespace DataAccess
             {
                 {
                     category.Id,
-                category.Title,
-                category.Url,
-                category.Summary,
-                category.Order,
-                category.Description,
-                category.Featured
+                    category.Title,
+                    category.Url,
+                    category.Summary,
+                    category.Order,
+                    category.Description,
+                    category.Featured
                 });
                 Console.WriteLine($"{rows} alterada(s)");
             }

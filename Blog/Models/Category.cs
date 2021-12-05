@@ -8,10 +8,15 @@ using System.Threading.Tasks;
 namespace Blog.Models
 {
     [Table ("[Category]")]
-    class Category
+    public class Category
     {
+        public Category()
+            => Posts = new List<Post>();
+        
         public int Id { get; set; }
         public string Name { get; set; }
         public string Role { get; set; }
+        [Write(false)]
+        public List<Post> Posts { get; set; }
     }
 }
