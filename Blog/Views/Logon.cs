@@ -1,7 +1,6 @@
 ﻿using Blog.Repositories;
 using System;
 using Blog;
-using Blog.Contexts;
 using System.Data.SqlClient;
 using Blog.Models;
 using System.Linq;

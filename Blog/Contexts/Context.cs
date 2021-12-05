@@ -4,17 +4,16 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Blog.Contexts
+namespace Blog.Context
 {
-    public class Context
+    class Context
     {
-        const string _connectionString = @"Server=localhost,1433;Database=Blog;User ID = sa; Password=1q2w3e4r@#$";
-        public Context()
+        private string connectionString;
+
+        public string ConnectionString
         {
-            ConnectionString = _connectionString;
+            get { return connectionString; }
+            set { connectionString = @"Server=localhost,1433;Database=Blog;User ID = sa; Password=1q2w3e4r@#$"; }
         }
-        
-        public string ConnectionString { get; set; }
-        
     }
 }

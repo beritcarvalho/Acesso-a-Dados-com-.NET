@@ -75,7 +75,8 @@ namespace Blog.Views
                     Console.WriteLine("Ver Postagens"); break;
                 case 3:
                     Console.SetCursorPosition(12, 13);
-                    Console.WriteLine("Cadastrar um usuário"); break;
+                    UserRegistration.Show(); break;
+                    break;
                 case 4:
                     Console.SetCursorPosition(12, 13);
                     if(login)
