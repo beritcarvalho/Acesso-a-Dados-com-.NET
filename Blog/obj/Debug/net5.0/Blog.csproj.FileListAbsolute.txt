@@ -22,3 +22,4 @@ C:\estudos\Acesso-a-Dados-com-.NET\Blog\obj\Debug\net5.0\Blog.dll
 C:\estudos\Acesso-a-Dados-com-.NET\Blog\obj\Debug\net5.0\ref\Blog.dll
 C:\estudos\Acesso-a-Dados-com-.NET\Blog\obj\Debug\net5.0\Blog.pdb
 C:\estudos\Acesso-a-Dados-com-.NET\Blog\obj\Debug\net5.0\Blog.genruntimeconfig.cache
+C:\estudos\Acesso-a-Dados-com-.NET\Blog\obj\Debug\net5.0\Blog.csproj.AssemblyReference.cache
