@@ -80,7 +80,7 @@ namespace Blog.Views
                 case 4:
                     Console.SetCursorPosition(12, 13);
                     if(login)
-                        Console.WriteLine("Cadastrar um perfil"); 
+                        RoleRegistration.Show(); 
                     else Show(); break;
                 default:
                     Show(); break;

@@ -21,20 +21,26 @@ namespace Blog.Views
             Console.WriteLine("--------------------CADASTRAR NOVO USUÁRIO--------------------\n\n\n");
 
             var connection = new SqlConnection(connectionString);
-            var repository = new Repository<User>(connection);
-
-            var user = CreateUser();
-
-            connection.Open();           
-            repository.Create(user);
-            connection.Close();
-
-            Console.WriteLine("Ir para o menu");
-            Console.ReadKey();
+            InsertUser(connection);
 
             MenuMain.Show();
         }
 
+
+        public static void InsertUser(SqlConnection connection)
+        {
+            var repository = new Repository<User>(connection);
+
+            var user = CreateUser();
+
+            connection.Open();
+            repository.Create(user);
+            connection.Close();
+
+            Console.WriteLine("Usuário criado com sucesso!");
+            Console.ReadKey();
+
+        }
         public static User CreateUser()
         {
             var user = new User();
@@ -78,7 +84,7 @@ namespace Blog.Views
                 }
 
                 Console.Clear();
-                Console.WriteLine("\tConfirmar? 1 - SIM");
+                Console.WriteLine("\tConfirmar? 1 - SIM | 0 - Voltar ao Menu");
 
                 Console.WriteLine($"\t\tNome: {user.Name}");
                 Console.WriteLine($"\t\tEmail: {user.Email}");
@@ -90,8 +96,13 @@ namespace Blog.Views
                 var choise = Console.ReadLine();
                 if (choise == "1")
                     break;
+                else if(choise == "0")
+                {
+                    MenuMain.Show(true);
+                }
 
             }
+            
             return user;
         }
     }
