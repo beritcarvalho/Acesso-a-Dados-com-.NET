@@ -1,17 +1,18 @@
-﻿using Blog.Repositories;
-using System;
-using Blog;
-using System.Data.SqlClient;
+﻿using Blog.Library;
 using Blog.Models;
+using Blog.Repositories;
+using System;
+using System.Data.SqlClient;
 using System.Linq;
-using Blog.Library;
 using System.Text;
 
 namespace Blog.Views
 {
     public static class Logon
     {
+        public static int Id { get; set; }
         private const string connectionString = @"Server=localhost,1433;Database=Blog;User ID = sa; Password=1q2w3e4r@#$";
+        
         public static void Show()
         {
             Console.BackgroundColor = ConsoleColor.Gray;
@@ -22,7 +23,7 @@ namespace Blog.Views
             connection.Open();
             var repository = new Repository<User>(connection);
 
-                        var login = false;
+            var login = false;
             while (true)
             {
                 Console.Clear();
@@ -41,7 +42,8 @@ namespace Blog.Views
                 var validadion = new Validation();
 
                 if (user != null)
-                {                    
+                {
+                    Id = user.Id;
                     if (validadion.Validate(user, password))
                     {
                         login = true;
