@@ -13,6 +13,8 @@ namespace Blog
         private const string CONNECTION_STRING = @"Server=localhost,1433;Database=Blog;User ID = sa; Password=1q2w3e4r@#$";
         static void Main(string[] args)
         {
+            Database.Connection = new SqlConnection(CONNECTION_STRING);
+            Database.Connection.Open();
             DefaultConsole.Clear();
             Console.WriteLine("Berit");
             MenuMain.Show();
@@ -27,6 +29,7 @@ namespace Blog
 
             connection.Close();*/
             Console.ReadLine();
+            Database.Connection.Close();
         }
 
         public static void ReadUsers(SqlConnection connection)

@@ -7,33 +7,51 @@ namespace Blog.Views
 {
     class PostRegistration
     {
-        private const string connectionString = @"Server=localhost,1433;Database=Blog;User ID = sa; Password=1q2w3e4r@#$";
         public static void Show()
         {
+            var repository = new Repository<Post>(Database.Connection);
             Console.BackgroundColor = ConsoleColor.DarkGreen;
             Console.ForegroundColor = ConsoleColor.Black;
 
             Console.Clear();
             Console.WriteLine("--------------------CADASTRAR NOVO POST--------------------\n\n\n");
 
-            var connection = new SqlConnection(connectionString);
-            InsertPost(connection);
+            Console.WriteLine("\t1 - Criar um novo post");
+            Console.WriteLine("\t2 - Listar posts");
+            Console.WriteLine("\t3 - Atualizar um post");
+            Console.WriteLine("\t4 - Apagar um post");
+            Console.WriteLine("\t0 - Voltar");
+            short choise = short.Parse(Console.ReadLine());
+
+            switch (choise)
+            {
+                case 0: MenuMain.Show(true); break;
+                case 1: InsertPost(repository); break;
+                case 2: ReadPosts(repository); break;
+                case 3: UpdatePost(repository); break;
+                case 4: InsertPost(repository); break;
+                default: PostRegistration.Show(); break;
+            }
+            //InsertPost(connection);
+
+
+            MenuMain.Show(true);
+
+
+
+
+            InsertPost(repository);
 
             MenuMain.Show();
         }
 
 
-        public static void InsertPost(SqlConnection connection)
+        public static void InsertPost(Repository<Post> repository)
         {
-            var repository = new Repository<Post>(connection);
-
             var post = CreatePost();
-            var dateTimeNow = DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss");
-            post.CreateDate = DateTime.Parse(dateTimeNow);
-            post.LastUpdateDate = DateTime.Parse(dateTimeNow);
-            connection.Open();
+            post.CreateDate = DateTime.Now;
             repository.Create(post);
-            connection.Close();
+
 
             Console.WriteLine("Post criado com sucesso!");
             Console.ReadKey();
@@ -41,9 +59,9 @@ namespace Blog.Views
         }
         public static Post CreatePost()
         {
-            var connection = new SqlConnection(connectionString);
-            var repositoryCategory = new Repository<Category>(connection);
-            var repositoryUser = new Repository<User>(connection);
+            var repositoryCategory = new Repository<Category>(Database.Connection);
+            var repositoryUser = new Repository<Category>(Database.Connection);
+
 
             var post = new Post();
 
@@ -68,24 +86,25 @@ namespace Blog.Views
                 post.Slug = Console.ReadLine();
 
                 post.LastUpdateDate = DateTime.Now;
+                
 
                 Console.WriteLine("\tEscolha uma categoria: ");
                 Console.WriteLine("\t\tGostaria de ver as categorias?  1 - SIM");
                 var choiseCategory = Console.ReadLine();
-                if(choiseCategory == "1")
+                if (choiseCategory == "1")
                 {
                     var categories = repositoryCategory.Read();
-                    foreach(var category in categories)
+                    foreach (var category in categories)
                     {
                         Console.WriteLine($"{category.Name} => {category.Id}");
                     }
                 }
 
-                Console.Write("\tId de Categoria: ");
+                Console.Write("\tSelecionado Id de Categoria: ");
                 post.CategoryId = int.Parse(Console.ReadLine());
 
                 Console.Write("\tId do Autor ");
-                if(Logon.Id != 0)
+                if (Logon.Id != 0)
                     post.AuthorId = Logon.Id;
                 else
                 {
@@ -113,17 +132,67 @@ namespace Blog.Views
                 Console.WriteLine($"\t\tId de Categoria: {post.CategoryId}");
                 Console.WriteLine($"\t\tId do Autor: {post.AuthorId}");
 
+                Console.WriteLine("\tConfirmar?");
                 var choise = Console.ReadLine();
                 if (choise == "1")
                     break;
-                else if(choise == "0")
+                else if (choise == "0")
                 {
                     MenuMain.Show(true);
                 }
 
             }
-            
+
             return post;
         }
+
+        public static void ReadPosts(Repository<Post> repository)
+        {
+            var posts = repository.Read();
+            foreach (var post in posts)
+            {
+                Console.WriteLine($"\t\tId: {post.Id}");
+                Console.WriteLine($"\t\tTítulo: {post.Title}");
+                Console.WriteLine($"\t\tSumário: {post.Summary}");
+                Console.WriteLine($"\t\tConteúdo: {post.Body}");
+                Console.WriteLine($"\t\tSlug: {post.Slug}");
+                Console.WriteLine($"\t\tData de Criação: {post.CreateDate}");
+                Console.WriteLine($"\t\tÚltima Atualização: {post.LastUpdateDate}");
+                Console.WriteLine($"\t\tId de Categoria: {post.CategoryId}");
+                Console.WriteLine($"\t\tId do Author: {post.AuthorId}\n");
+
+    }
+            Console.ReadKey();
+            PostRegistration.Show();
+        }
+
+        public static void UpdatePost(Repository<Post> repository)
+        {            
+            var post = CreatePost();
+
+            Console.WriteLine("Insira o Id do post a ser atualizado");
+            post.Id = short.Parse(Console.ReadLine());
+
+            repository.Update(post);
+
+            Console.WriteLine("Post Atualizado com sucesso!");
+            Console.ReadKey();
+            PostRegistration.Show();
+        }
+
+        public static void DeletePost(Repository<Post> repository)
+        {
+    
+            Console.WriteLine("Insira o Id do post a ser apagado");
+            var id = short.Parse(Console.ReadLine());
+
+            repository.Delete(id);
+
+            Console.WriteLine("Post Deletado com sucesso!");
+            Console.ReadKey();
+            PostRegistration.Show();
+        }
+
     }
 }
+

@@ -1,11 +1,11 @@
 {
   "version": 2,
-  "dgSpecHash": "9f35OstE5At7wIAbFYeafCkBhGi/YiXQm6gdBMEaIrAc7XH9/fTtDreQ6l3rFSQ4vwichFV/ukZ8HeTHiNla8w==",
+  "dgSpecHash": "iGWeOThGbhLorWvmGmzWqlaxSQ9m9hNkG4Yqhm3k6gO1Uo/UJXgeskAVFgMXtuKPNeR7cUuzDVNo02wDgYJNVw==",
   "success": true,
   "projectFilePath": "C:\\estudos\\Acesso-a-Dados-com-.NET\\DataAccess\\DataAccess.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\t2s-user-cod212\\.nuget\\packages\\dapper\\2.0.90\\dapper.2.0.90.nupkg.sha512",
-    "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder\\microsoft.csharp\\4.5.0\\microsoft.csharp.4.5.0.nupkg.sha512",
+    "C:\\Users\\t2s-user-cod212\\.nuget\\packages\\microsoft.csharp\\4.5.0\\microsoft.csharp.4.5.0.nupkg.sha512",
     "C:\\Users\\t2s-user-cod212\\.nuget\\packages\\microsoft.data.sqlclient\\2.1.3\\microsoft.data.sqlclient.2.1.3.nupkg.sha512",
     "C:\\Users\\t2s-user-cod212\\.nuget\\packages\\microsoft.data.sqlclient.sni.runtime\\2.1.1\\microsoft.data.sqlclient.sni.runtime.2.1.1.nupkg.sha512",
     "C:\\Users\\t2s-user-cod212\\.nuget\\packages\\microsoft.identity.client\\4.21.1\\microsoft.identity.client.4.21.1.nupkg.sha512",
@@ -23,7 +23,7 @@
     "C:\\Users\\t2s-user-cod212\\.nuget\\packages\\system.identitymodel.tokens.jwt\\6.8.0\\system.identitymodel.tokens.jwt.6.8.0.nupkg.sha512",
     "C:\\Users\\t2s-user-cod212\\.nuget\\packages\\system.runtime.caching\\4.7.0\\system.runtime.caching.4.7.0.nupkg.sha512",
     "C:\\Users\\t2s-user-cod212\\.nuget\\packages\\system.security.accesscontrol\\4.7.0\\system.security.accesscontrol.4.7.0.nupkg.sha512",
-    "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder\\system.security.cryptography.cng\\4.5.0\\system.security.cryptography.cng.4.5.0.nupkg.sha512",
+    "C:\\Users\\t2s-user-cod212\\.nuget\\packages\\system.security.cryptography.cng\\4.5.0\\system.security.cryptography.cng.4.5.0.nupkg.sha512",
     "C:\\Users\\t2s-user-cod212\\.nuget\\packages\\system.security.cryptography.protecteddata\\4.7.0\\system.security.cryptography.protecteddata.4.7.0.nupkg.sha512",
     "C:\\Users\\t2s-user-cod212\\.nuget\\packages\\system.security.permissions\\4.7.0\\system.security.permissions.4.7.0.nupkg.sha512",
     "C:\\Users\\t2s-user-cod212\\.nuget\\packages\\system.security.principal.windows\\4.7.0\\system.security.principal.windows.4.7.0.nupkg.sha512",

@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace Blog.Models
 {
-    [Table ("[Post])")]
+    [Table ("[Post]")]
     public class Post
     {
         public int Id { get; set; }
@@ -19,6 +19,6 @@ namespace Blog.Models
         public DateTime LastUpdateDate { get; set; }
         public int CategoryId { get; set; }
         public int AuthorId { get; set; }
-
     }
 }
+
