@@ -50,7 +50,7 @@ namespace Blog.Views
                 Console.WriteLine("5 - Cadastrar uma categoria");
                 Console.SetCursorPosition(3, 12);
                 Console.WriteLine("6 - Cadastrar uma tag");
-                Console.SetCursorPosition(3, 12);
+                Console.SetCursorPosition(3, 13);
                 Console.WriteLine("7 - Relatórios");
             }
             Console.SetCursorPosition(3, 17);
